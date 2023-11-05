@@ -1,0 +1,23 @@
+float temperature = 20.0; // 초기 온도 값
+float lightValue = 500.0; // 초기 조도 값
+int lastUpdateTime = 0; // 마지막 업데이트 시간
+
+void setup() {
+  size(400, 200);
+  textSize(24);
+}
+
+void draw() {
+  background(220);
+
+  // 1초에 한 번 데이터 업데이트
+  if (millis() - lastUpdateTime >= 1000) {
+    temperature = random(10, 30); // 새로운 온도 값
+    lightValue = random(100, 1000); // 새로운 조도 값
+    lastUpdateTime = millis(); // 시간 업데이트
+  }
+
+  fill(0);
+  text("온도 값: " + nf(temperature, 0, 2) + " °C", 20, 100);
+  text("조도 값: " + nf(lightValue, 0, 0) + " Lux", 20, 150);
+}
